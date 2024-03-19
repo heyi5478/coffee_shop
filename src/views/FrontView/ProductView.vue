@@ -34,7 +34,7 @@
             </ol>
           </nav>
           <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
-          <p class="mb-0 text-muted text-end"><del>NT$1,200</del></p>
+          <p class="mb-0 text-muted text-end"><del>NT${{ product.origin_price }}</del></p>
           <p class="h4 fw-bold text-end">{{ product.price }}</p>
           <div class="row align-items-center">
             <div class="col-6">
