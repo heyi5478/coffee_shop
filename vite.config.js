@@ -34,8 +34,8 @@ export default defineConfig({
           const driveLetter = match ? match[0] : '';
           // substr 是被淘汰語法，因此要改 slice
           return (
-            driveLetter +
-            name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, "")
+            driveLetter
+            + name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '')
           );
         },
       },

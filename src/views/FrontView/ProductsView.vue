@@ -8,7 +8,7 @@
               <div class="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-start-0 border-end-0 rounded-0" id="headingOne" data-bs-toggle="collapse" data-bs-target="#collapseOne">
                 <div class="d-flex justify-content-between align-items-center pe-1">
                   <h4 class="mb-0">
-                    Lorem ipsum
+                    商品分類
                   </h4>
                   <i class="fas fa-chevron-down"></i>
                 </div>
@@ -32,11 +32,11 @@
           <div class="row">
             <div class="col-md-6" v-for="product in products" :key="product.id">
               <div class="card border-0 mb-4 position-relative position-relative">
-                <img :src="product.imageUrl" class="card-img-top rounded-0 object-fit-cover" height="300" alt="...">
+                <img :src="product.imageUrl" class="card-img-top object-fit-cover rounded-1" height="300" alt="...">
                 <a href="#" class="text-dark">
                   <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
                 </a>
-                <div class="card-body p-0">
+                <div class="card-body p-0 text-center">
                   <h4 class="mb-0 mt-3"><RouterLink :to="`/product/${product.id}`">{{ product.title }}</RouterLink></h4>
                   <p class="card-text mb-0">NT${{ product.price }} <span class="text-muted "><del>NT${{ product.origin_price }}</del></span></p>
                   <p class="text-muted mt-3"></p>
@@ -44,7 +44,7 @@
               </div>
             </div>
           </div>
-          <nav class="d-flex justify-content-center">
+          <!-- <nav class="d-flex justify-content-center">
             <ul class="pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -60,22 +60,9 @@
                 </a>
               </li>
             </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="bg-light py-4">
-      <div class="container">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start">
-          <p class="mb-0 fw-bold">Lorem ipsum dolor sit amet.</p>
-          <div class="input-group w-md-50 mt-md-0 mt-3">
-            <input type="text" class="form-control rounded-0" placeholder="" />
-            <div class="input-group-append">
-              <button class="btn btn-dark rounded-0" type="button" id="search">
-                Lorem ipsum
-              </button>
-            </div>
-          </div>
+            <pagination-component @emit-pages="getAllProducts" :pages="pagination" v-if="category == ''"/>
+            <pagination-component @emit-pages="getProducts" :pages="pagination" v-else/>
+          </nav> -->
         </div>
       </div>
     </div>
@@ -83,7 +70,6 @@
 
 <script>
 import axios from 'axios';
-// import { RouterLink } from 'vue-router';
 
 // console.log(import.meta.env.VITE_URL, import.meta.env.VITE_PATH);
 const { VITE_URL, VITE_PATH } = import.meta.env;
@@ -92,7 +78,7 @@ export default {
   data() {
     return {
       products: [],
-      categories: ['麵', '生物'],
+      categories: ['咖啡', '咖啡豆', '蛋糕'],
     };
   },
   watch: {
