@@ -92,7 +92,7 @@ export default {
 
       axios.get(`${VITE_URL}/api/${VITE_PATH}/product/${id}`)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.product = res.data.product;
         });
     },
@@ -128,7 +128,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route);
+    // console.log(this.$route);
     this.getProduct();
   },
 };
