@@ -733,9 +733,13 @@ a:focus {
 
   .footer-logo {
     display: block;
-    font-weight: bold;
-    font-size: 32px;
-    color: $white;
+    // font-weight: bold;
+    // font-size: 32px;
+    // color: $white;
+    img {
+      height: 75px;
+      filter: brightness(0) invert(1);
+    }
   }
 
   .footer_social {

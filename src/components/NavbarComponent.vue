@@ -3,7 +3,7 @@
 <div class="position-relative">
       <div class="container d-flex flex-column">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <RouterLink class="navbar-brand" to="/">Navbar</RouterLink>
+          <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt=""></RouterLink>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
