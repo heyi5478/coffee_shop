@@ -4,7 +4,7 @@
       <div class="row align-items-center">
         <div class="col-md-7">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
+            <div class="carousel-inner pdImg">
               <div class="carousel-item active">
                 <img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="...">
               </div>
