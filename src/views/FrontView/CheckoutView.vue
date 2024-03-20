@@ -255,8 +255,8 @@ export default {
       this.isLoading = true;
       const url = `${VITE_URL}/api/${VITE_PATH}/order`;
       const order = this.form;
-      this.$http.post(url, { data: order }).then((response) => {
-        this.$router.push(`/user/checkout/${response.data.orderId}`);
+      this.$http.post(url, { data: order }).then(() => {
+        this.$router.push('/ordersuccess');
         this.$refs.form.resetForm();
         this.isLoading = false;
       }).catch((error) => {
