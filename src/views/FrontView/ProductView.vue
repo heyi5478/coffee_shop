@@ -28,8 +28,8 @@
         <div class="col-md-5">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white px-0 mb-0 py-3">
-              <li class="breadcrumb-item"><a class="text-muted" href="./index.html">首頁</a></li>
-              <li class="breadcrumb-item"><a class="text-muted" href="./product.html">商店</a></li>
+              <li class="breadcrumb-item"><RouterLink class="text-muted" to="/">首頁</RouterLink></li>
+              <li class="breadcrumb-item"><RouterLink class="text-muted" to="/products">商店</RouterLink></li>
               <li class="breadcrumb-item active" aria-current="page">Detail</li>
             </ol>
           </nav>
