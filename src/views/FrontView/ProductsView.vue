@@ -94,9 +94,9 @@ export default {
       const { category = '' } = this.$route.query;
       const url = `${VITE_URL}/api/${VITE_PATH}/products?category=${category}`;
       axios.get(url).then((res) => {
-        console.log(res);
+        // console.log(res);
         this.products = res.data.products;
-        console.log(this.products);
+        // console.log(this.products);
       });
     },
   },
