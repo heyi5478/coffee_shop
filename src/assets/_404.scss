@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+$glare: #ffffff;
+$bgColor: #f5f5f5;
+$mugColor: #eaeaea;
+$light: #f5f5f5;
+$dark: #252a34;
+$icecubeColor: #ffaaa5;
+$strawColor1: #393e46;
+$potionColor: #e0ac69;
+$potionBtmColor: #8d5524;
+
+$font: 'Fjalla One', sans-serif;
+
+.hidden {
+  position: absolute;
+  left: -1000;
+  top: 0;
+}
+
+body {
+  margin: 0;
+  background: $bgColor;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  * {
+    font-family: $font;
+  }
+  
+  .link {
+    position: absolute;
+    left: 2rem;
+    top: 1rem;
+    color: $dark;
+    font-size: 1.2rem;
+    
+    &:focus, &:active {
+      color: $dark;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  width: 350px;
+  height: 600px;
+  opacity: .95;
+  
+  .straw {
+    position: absolute;
+    left: 190px;
+    top: -160px;
+    width: 25px;
+    height: 650px;
+    background: $strawColor1;
+    opacity: .8;
+    transform: rotate(22deg);
+  }
+  
+  .mug {
+    &__neck {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 10%;
+      background: $mugColor;
+      border-radius: 10% 10% 0 0;
+    }
+    
+    &__body {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 90%;
+      background: $mugColor;
+      border-radius: 10%;
+      box-sizing: border-box;
+      
+      &:after {
+        position: absolute;
+        left: 25px;
+        top: 15px;
+        display: block;
+        content: '';
+        width: 50px;
+        height: 400px;
+        background: linear-gradient(98deg, $glare, transparent 50%);
+        border-radius: 15% 10% 0 0;
+      }
+      
+      &:hover {
+        .potion {
+          height: 320px;
+        }
+      }
+      
+      .potion {
+        position: absolute;
+        bottom: 4px;
+        left: 6px;
+        width: 338px;
+        height: 380px;
+        border-radius: 0 0 45px 45px;
+        background: linear-gradient(0deg, $potionBtmColor, $potionColor);
+        transition: height 1s cubic-bezier(0.8,1.5,0.4,1.0);
+        
+        .wave {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          
+          &:before {
+            position: absolute;
+            top: -580px;
+            left: -100px;
+            content: '';
+            width: 550px;
+            height: 600px;
+            border-radius: 45%;
+            opacity: 0.1;
+            background: radial-gradient($light, $dark);
+            animation: wave 20s linear infinite;
+          }
+          
+          @keyframes wave {
+            0% {
+              transform: translateY(0%) rotate(0deg);
+            }
+            50% {
+              transform: translateY(4%) rotate(180deg);
+            }
+            100% {
+              transform: translateY(0%) rotate(360deg);
+            }
+          }
+        }
+        
+        .icecube {
+          $size1: 50px;
+          $size2: 40px;
+          $size3: 80px;
+          
+          position: absolute;
+          border-radius: 15%;
+          background-image: radial-gradient(circle at center, transparent, $glare);
+          opacity: .2;
+          
+          &.size-1 {
+            top: -($size1 / 2);  
+            width: $size1;
+            height: $size1;
+            left: 5%;
+            animation: bubbling 30s ease-out infinite;
+          }
+          
+          &.size-2 {
+            top: -($size2 / 2);  
+            width: $size2;
+            height: $size2;
+            left: 60%;
+            animation: bubbling 25s ease-out infinite;
+          }
+          
+          &.size-3 {
+            top: -($size3 / 2);  
+            width: $size3;
+            height: $size3;
+            left: 20%;
+            animation: bubbling 40s ease-out infinite;
+          }
+          
+          @keyframes bubbling {
+            50% {
+              transform: translateX(100%) translateY(25%) rotate(-20deg);
+            }
+            100% {
+              transform: translateX(0%) translateY(0%) rotate(0deg);
+            }
+          }
+        }
+        
+        .text {
+          width: 100%;
+          color: $light;
+          position: absolute;
+          top: 20%;
+          opacity: .4;
+          text-shadow: 0 0 10px $light;
+          
+          .letter {
+            font-size: 10rem;
+            font-weight: bold;
+
+            &:first-child {
+              position: absolute;
+              left: 10%;
+              animation: 30s ease-in-out float1 alternate-reverse infinite;
+            }
+
+            &:nth-child(2) {
+              position: absolute;
+              left: 38%;
+              animation: 20s ease-in-out float2 alternate-reverse infinite;
+            }
+            
+            &:nth-child(3) {
+              position: absolute;
+              left: 65%;
+              animation: 10s ease-in-out float3 alternate-reverse infinite;
+            }
+            
+            @keyframes float1 {
+              50% {
+                transform: translateY(20%) rotate(-20deg);
+              }
+              100% {
+                transform: translateY(40%) rotate(56deg);
+              }
+            }
+            
+            @keyframes float2 {
+              50% {
+                transform: translateY(10%) rotate(24deg);
+              }
+              100% {
+                transform: translateY(20%) rotate(-10deg);
+              }
+            }
+            
+            @keyframes float3 {
+              50% {
+                transform: translateY(-10%) rotate(12deg);
+              }
+              100% {
+                transform: translateY(0%) rotate(25deg);
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    &__shadow {
+      position: absolute;
+      bottom: -12px;
+      width: 100%;
+      height: 25px;
+      border-radius: 50%;
+      background: $dark;
+      opacity: .4;
+    }
+  }
+}

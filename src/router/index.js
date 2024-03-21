@@ -38,6 +38,10 @@ const routes = [
     component: () => import('../views/LoginView.vue'),
   },
   {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFoundView.vue'),
+  },
+  {
     path: '/admin',
     component: () => import('../views/DashboardView/AdminDashboard.vue'),
     children: [
