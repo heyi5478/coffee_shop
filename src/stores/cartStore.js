@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 
 import axios from 'axios';
+// import toastMessage from './toastMessage';
 
 // console.log(import.meta.env.VITE_URL, import.meta.env.VITE_PATH);
 const { VITE_URL, VITE_PATH } = import.meta.env;
@@ -30,6 +31,12 @@ export default defineStore('cartStore', {
 
       axios.post(`${VITE_URL}/api/${VITE_PATH}/cart`, { data: order })
         .then(() => {
+          // 在此處調用 pushMessage 方法
+          // console.log(toastMessage.pushMessage);
+          // toastMessage.pushMessage({
+          //  style: 'success',
+          //  title: 'Success',
+          //  ontent: 'Product added to cart successfully!' });
           // console.log(res);
           this.getCart();
         });
