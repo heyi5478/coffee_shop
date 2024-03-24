@@ -67,6 +67,29 @@
           <p class="text-muted">{{ product.content }}</p>
         </div>
       </div>
+
+      <div class="row justify-content-center bg-primary">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-5 text-center">
+          <h2 style="color:white">類似商品</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center px-5 py-4 bg-primary"> <!--card-->
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12 mb-2"  v-for=" item in sameProduct" :key="item.id">
+          <RouterLink :to="`/product/${item.id}`" class="link text-primary">
+            <div class="card border-0 w-80 bg-primary">
+              <div class="pic w-100 px-5 overflow-hidden">
+                <img :src="item.imageUrl" class="card-img w-100 object-fit-cover overflow-hidden" :alt="item.title">
+              </div>
+              <div class=" over card-img-overlay">
+                <h3 class="link text-white">了解更多</h3>
+              </div>
+              <div class="card-body px-5 py-2 text-center mt-2 ">
+                <h5 class="card-title mb-2 text-white">{{ item.title }}</h5>
+              </div>
+            </div>
+          </RouterLink>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -74,6 +97,7 @@
 import axios from 'axios';
 import { mapActions } from 'pinia';
 
+import toastMessage from '@/stores/toastMessage';
 import cartStore from '@/stores/cartStore';
 
 // console.log(import.meta.env.VITE_URL, import.meta.env.VITE_PATH);
@@ -84,6 +108,9 @@ export default {
     return {
       product: {},
       productNum: 1,
+      sameProduct: [],
+      sameCategory: '',
+      pageId: this.$route.params.id,
     };
   },
   methods: {
@@ -94,9 +121,12 @@ export default {
         .then((res) => {
           // console.log(res);
           this.product = res.data.product;
+          this.sameCategory = this.product.category;
+          this.getSameProduct(this.sameCategory);
         });
     },
     ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(toastMessage, ['pushMessage']),
     // addToCart(id) {
     //   const order = {
     //     product_id: id,
@@ -109,6 +139,23 @@ export default {
     //       // this.product = res.data.product;
     //     });
     // },
+    getSameProduct(sameCategory) {
+      const { id } = this.$route.params;
+
+      axios.get(`${VITE_URL}/api/${VITE_PATH}/products?category=${sameCategory}`)
+        .then((res) => {
+          // console.log(res);
+          this.sameProduct = res.data.products.filter((item) => item.id !== id);
+          // console.log(res.data.products);
+        })
+        .catch((err) => {
+          this.pushMessage({
+            style: 'danger',
+            title: '沒有相同商品',
+            content: err.response.data.message,
+          });
+        });
+    },
     // 點擊 + - 按鈕做數量判斷
     changeQty(num) {
       const qty = this.productNum + num;
@@ -127,9 +174,19 @@ export default {
       }
     },
   },
+  watch: {
+    $route(to) {
+      this.pageId = to.params.id;
+      this.getProduct(this.pageId);
+    },
+  },
   mounted() {
     // console.log(this.$route);
-    this.getProduct();
+    this.getProduct(this.$route.params.id);
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '../../assets/_sameProduct.scss';
+</style>
