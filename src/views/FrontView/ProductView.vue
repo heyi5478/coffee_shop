@@ -73,12 +73,12 @@
           <h2 style="color:white">類似商品</h2>
         </div>
       </div>
-      <div class="row justify-content-center px-5 py-4 bg-primary"> <!--card-->
+      <div class="row justify-content-between px-2 py-4 bg-primary"> <!--card-->
         <div class="col-12 col-lg-3 col-md-3 col-sm-12 mb-2"  v-for=" item in sameProduct" :key="item.id">
           <RouterLink :to="`/product/${item.id}`" class="link text-primary">
             <div class="card border-0 w-80 bg-primary">
-              <div class="pic w-100 px-5 overflow-hidden">
-                <img :src="item.imageUrl" class="card-img w-100 object-fit-cover overflow-hidden" :alt="item.title">
+              <div class="pic w-100 px-2 overflow-hidden rounded-1">
+                <img :src="item.imageUrl" class="card-img w-100 object-fit-cover overflow-hidden" height="200px" :alt="item.title">
               </div>
               <div class=" over card-img-overlay">
                 <h3 class="link text-white">了解更多</h3>
