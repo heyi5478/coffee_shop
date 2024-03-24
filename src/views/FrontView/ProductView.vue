@@ -127,18 +127,6 @@ export default {
     },
     ...mapActions(cartStore, ['addToCart']),
     ...mapActions(toastMessage, ['pushMessage']),
-    // addToCart(id) {
-    //   const order = {
-    //     product_id: id,
-    //     qty: 1,
-    //   };
-
-    //   axios.post(`${VITE_URL}/api/${VITE_PATH}/cart`, { data: order })
-    //     .then((res) => {
-    //       console.log(res);
-    //       // this.product = res.data.product;
-    //     });
-    // },
     getSameProduct(sameCategory) {
       const { id } = this.$route.params;
 
@@ -165,10 +153,16 @@ export default {
     changeNumber(num) {
       if (num >= 10) {
         this.productNum = 10;
-        this.$bus.$emit('message:push', '數量不可超過10喔!', 'info');
+        this.pushMessage({
+          style: 'danger',
+          title: '數量不可超過10喔!',
+        });
       } else if (num <= 1) {
         this.productNum = 1;
-        this.$bus.$emit('message:push', '數量不可低於1喔!', 'info');
+        this.pushMessage({
+          style: 'danger',
+          title: '數量不可低於1喔!',
+        });
       } else {
         this.productNum = num;
       }
