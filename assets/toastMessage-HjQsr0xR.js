@@ -1,1 +1,0 @@
-import{H as o}from"./index-vREkCPE2.js";const h=o("toastMessage",{state:()=>({messages:[]}),actions:{toastShow(){setTimeout(()=>{this.messages.shift()},6e3)},clearToast(s){this.messages.splice(s,1)},pushMessage(s){const{style:t="success",title:e,content:a}=s;this.messages.push({style:t,title:e,content:a}),this.toastShow()}}});export{h as t};
