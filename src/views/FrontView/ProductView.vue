@@ -5,24 +5,11 @@
         <div class="col-md-7">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner pdImg">
-              <div class="carousel-item active">
-                <img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="...">
-              </div>
-              <!-- <div class="carousel-item" v-for="(item, index) in imagesUrl" :key="index">
-                <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" class="d-block w-100" alt="...">
-              </div> -->
-              <!-- <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" class="d-block w-100" alt="...">
-              </div> -->
+              <swiper :navigation="true" :modules="modules" class="mySwiper">
+                <swiper-slide><img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
+                <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" alt=""></swiper-slide>
+              </swiper>
             </div>
-            <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a> -->
           </div>
         </div>
         <div class="col-md-5">
@@ -95,21 +82,36 @@
 
 <script>
 import axios from 'axios';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import { mapActions } from 'pinia';
 
 import toastMessage from '@/stores/toastMessage';
 import cartStore from '@/stores/cartStore';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+
 // console.log(import.meta.env.VITE_URL, import.meta.env.VITE_PATH);
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Navigation],
+    };
+  },
   data() {
     return {
       product: {},
       productNum: 1,
       sameProduct: [],
       sameCategory: '',
+      imagesUrl: [],
       pageId: this.$route.params.id,
     };
   },
@@ -121,6 +123,7 @@ export default {
         .then((res) => {
           // console.log(res);
           this.product = res.data.product;
+          this.imagesUrl = this.product.imagesUrl;
           this.sameCategory = this.product.category;
           this.getSameProduct(this.sameCategory);
         });
