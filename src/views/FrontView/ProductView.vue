@@ -4,12 +4,10 @@
       <div class="row align-items-center">
         <div class="col-md-7">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner pdImg">
-              <swiper :navigation="true" :modules="modules" class="mySwiper">
-                <swiper-slide><img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
-                <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" alt=""></swiper-slide>
-              </swiper>
-            </div>
+            <swiper :navigation="true" :modules="modules" class="mySwiper pdImg">
+              <swiper-slide><img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
+              <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" alt=""></swiper-slide>
+            </swiper>
           </div>
         </div>
         <div class="col-md-5">
@@ -41,7 +39,7 @@
               </div>
             </div>
             <div class="col-6">
-              <a class="text-nowrap btn btn-dark w-100 py-2" @click.prevent="addToCart(product.id)">加入購物車</a>
+              <a class="text-nowrap btn btn-secondary w-100 py-2" @click.prevent="addToCart(product.id)">加入購物車</a>
             </div>
           </div>
         </div>
@@ -88,7 +86,7 @@ import { mapActions } from 'pinia';
 import toastMessage from '@/stores/toastMessage';
 import cartStore from '@/stores/cartStore';
 
-import 'swiper/css';
+import '../../assets/_swiper.scss';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
