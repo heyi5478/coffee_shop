@@ -3,22 +3,27 @@
 <!-- eslint-disable no-trailing-spaces -->
 <!-- eslint-disable max-len -->
 <template>
-        <NavbarComponent></NavbarComponent>
-   
-    <RouterView></RouterView>
+<!-- preloader -->
+<PreloaderComponent></PreloaderComponent>
 
-        <footerComponent></footerComponent>
+<NavbarComponent></NavbarComponent>
+
+<RouterView></RouterView>
+
+<footerComponent></footerComponent>
 
 </template>
 
 <script>
 import NavbarComponent from '../components/NavbarComponent.vue';
+import PreloaderComponent from '../components/PreloaderComponent.vue';
 import footerComponent from '../components/footerComponent.vue';
 
 export default {
   components: {
     NavbarComponent,
     footerComponent,
+    PreloaderComponent,
   },
 };
 </script>
