@@ -1,28 +1,28 @@
-  .card{
-    position: relative;
+.card{
+  position: relative;
     // max-height: 180px;
+}
+.over{
+  position: absolute;
+  top:20%;
+  left: 20%;
+  font-size:2rem;
+  display: none;
+  z-index:1;
+  .link{
+      text-decoration: none;
   }
-  .over{
-    position: absolute;
-    top:20%;
-    left: 20%;
-    font-size:2rem;
-    display: none;
-    z-index:1;
-      .link{
-        text-decoration: none;
-      }
+}
+.pic{
+  height: 200px;
+  img{
+    transition: all 1s 0s ease;
   }
-  .pic{
-    height: 200px;
-      img{
-        transition: all 1s 0s ease;
-      }
-  }
-  .card:hover .card-img{
-    filter: contrast(50%);
-    transform: scale(1.1);
-  }
-  .card:hover .over{
-    display: inline-block;
-  }
+}
+.card:hover .card-img{
+  filter: contrast(50%);
+  transform: scale(1.1);
+}
+.card:hover .over{
+  display: inline-block;
+}

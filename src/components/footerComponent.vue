@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div class="footer-section">
+  <footer class="footer-section footer">
     <div class="container">
       <div class="row">
         <div class="col-md-4 footer-col">
@@ -19,7 +19,7 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <RouterLink to="/" class="footer-logo object-fit-cover">
-                <img src="../assets/images/logo.png" alt="">
+                <img src="../assets/images/logo.png" alt="logo">
             </RouterLink>
             <p>歡迎來到「泡咖啡」！我們是一家專注於帶給您最純正、最風味豐富的咖啡體驗的線上咖啡專賣店。
 
@@ -56,7 +56,7 @@
         <p class="me-2">非官方網站僅作練習使用，無任何商業用途<span> | </span><RouterLink class="ms-2" to="/login">登入後台</RouterLink></p>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>

@@ -27,7 +27,7 @@
                 <input type="file" id="customFile" class="form-control"
                  ref="fileInput" @change="uploadFile" />
               </div>
-              <img class="img-fluid" :src="tempProduct.imageUrl" />
+              <img class="img-fluid" alt="產品圖" :src="tempProduct.imageUrl" />
                 <!-- 延伸技巧，多圖 -->
               <div class="mt-5" v-if="tempProduct.imagesUrl">
                 <div v-for="(image, key) in tempProduct.imagesUrl" class="mb-3" :key="key">
@@ -35,7 +35,7 @@
                    v-model="tempProduct.imagesUrl[key]"
                     placeholder="請輸入連結" />
                   <div>
-                    <img class="img-fluid" :src="image" />
+                    <img class="img-fluid" alt="細部圖" :src="image" />
                   </div>
                   <button type="button" class="btn btn-outline-danger"
                    @click="tempProduct.imagesUrl.splice(key, 1)">

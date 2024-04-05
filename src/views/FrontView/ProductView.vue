@@ -6,7 +6,7 @@
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <swiper :navigation="true" :modules="modules" class="mySwiper pdImg">
               <swiper-slide><img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
-              <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" style="height: 500px;" alt=""></swiper-slide>
+              <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" style="height: 500px;" alt="產品細節"></swiper-slide>
             </swiper>
           </div>
         </div>

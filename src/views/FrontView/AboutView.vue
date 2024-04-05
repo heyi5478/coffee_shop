@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="img-box">
-          <img src="../../assets/images/about-img.jpg" alt="">
+          <img src="../../assets/images/about-img.jpg" alt="形象圖">
 
         </div>
       </div>

@@ -3,7 +3,7 @@
   <!-- slider -->
   <section class="slider_section position-relative">
     <div class="slider_bg_box">
-      <img src="../../assets/images/slider-bg.jpg" alt="">
+      <img src="../../assets/images/slider-bg.jpg" alt="banner背景圖">
     </div>
     <div class="slider_bg"></div>
     <div class="container">
@@ -25,19 +25,19 @@
         <div class="col-md-6">
           <div class="detail_container">
             <div class="detail-box">
-              <img src="../../assets/images/s1.png" alt="">
+              <img src="../../assets/images/s1.png" alt="咖啡豆icon">
               <h5>自產有機的咖啡豆</h5>
               <p>我們在種植、採摘和加工咖啡過程中的細心程度越高，咖啡的品質就會越高。以合乎道德的方式從多樣化的供應商網路中採購及購買優質咖啡。與種植者建立良好的合作關係，這確保了我們能順利獲得高品質的咖啡。我們尋找那些能以巨大熱情來進行咖啡種植、採摘和加工的人們，這份熱情要與在進行咖啡豆混合、烘焙、包裝和調製時所具有的熱情相同。這股對咖啡的熱情也反映在我們在咖啡之旅中，對每一項細節的要求。
               </p>
             </div>
             <div class="detail-box">
-              <img src="../../assets/images/s2.png" alt="">
+              <img src="../../assets/images/s2.png" alt="咖啡icon">
               <h5>客製你最愛的飲料風味</h5>
               <p>試試將牛奶更換成低脂牛奶、豆奶或椰奶，或升級為燕麥奶、杏仁堅果奶。還可以調整濃縮咖啡份數、或更換為低咖啡因濃縮咖啡、短濃縮咖啡、或升級特選濃縮咖啡。再試試改變飲料風味，香草、焦糖、榛果、鹹焦糖等四種風味選擇，為你的飲料增添變化。
               </p>
             </div>
             <div class="detail-box">
-              <img src="../../assets/images/s3.png" alt="">
+              <img src="../../assets/images/s3.png" alt="咖啡機icon">
               <h5>台灣在地文化系列商品</h5>
               <p>在地人文美食風情受旅者盛讚，而民間廟宇文化衍生出的各式活動與風俗故事，更是形塑成重要的觀光特色；其中又以媽祖遶境、月老文化和三太子最廣為人知。以陶瓷浮雕搭配精緻貼花工藝，具體呈現在地文化所延伸出的寓意，邀請您一起收藏台灣的美好。
 
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-6 col-lg-5 ml-auto">
           <div class="img-box">
-            <img src="../../assets/images/spcl-img.jpg" alt="">
+            <img src="../../assets/images/spcl-img.jpg" alt="咖啡">
           </div> </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="img-box">
-            <img src="../../assets/images/about-img.jpg" alt="">
+            <img src="../../assets/images/about-img.jpg" alt="形象圖">
 
           </div>
         </div>
