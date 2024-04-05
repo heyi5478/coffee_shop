@@ -10,19 +10,19 @@
 
 <RouterView></RouterView>
 
-<footerComponent></footerComponent>
+<FooterComponent></FooterComponent>
 
 </template>
 
 <script>
 import NavbarComponent from '../components/NavbarComponent.vue';
 import PreloaderComponent from '../components/PreloaderComponent.vue';
-import footerComponent from '../components/footerComponent.vue';
+import FooterComponent from '../components/FooterComponent.vue';
 
 export default {
   components: {
     NavbarComponent,
-    footerComponent,
+    FooterComponent,
     PreloaderComponent,
   },
 };
