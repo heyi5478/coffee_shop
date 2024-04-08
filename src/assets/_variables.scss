@@ -46,6 +46,9 @@ $yellow:  #ffc107 !default;
 $green:   #198754 !default;
 $teal:    #20c997 !default;
 $cyan:    #0dcaf0 !default;
+$neutral-500: #a6a6a6;
+$neutral-700: #666666;
+$neutral-900: #1f1f1f;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -417,6 +420,9 @@ $spacers: (
   5: $spacer * 3,
   6: $spacer * 4,
   7: $spacer * 5,
+  8: $spacer * 6,
+  9: $spacer * 7,
+  10: $spacer * 8,
 ) !default;
 // scss-docs-end spacer-variables-maps
 
