@@ -1,1 +1,0 @@
-import{_ as t,e as o,a as s,c as a,f as c,w as n,F as r,b as _,g as l}from"./index-9cRO60yn.js";const d={},u=_("h2",null,"訂單已送出",-1);function f(i,m){const e=o("RouterLink");return s(),a(r,null,[u,c(e,{to:"/"},{default:n(()=>[l("回首頁")]),_:1})],64)}const x=t(d,[["render",f]]);export{x as default};
