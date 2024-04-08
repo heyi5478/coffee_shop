@@ -4,8 +4,11 @@
   <div class="mb-4">
     <OrderTimeLine :step="step" />
   </div>
-  <h2 class="text-center">訂單已送出</h2>
-  <RouterLink to="/" class="text-decoration-none"><h3 class="text-center">回首頁</h3></RouterLink>
+  <div class="text-center mb-5">
+    <h2 class="mb-3">訂單已送出</h2>
+    <RouterLink to="/products"
+    class="text-decoration-none"><h3 class="">繼續購物</h3></RouterLink>
+  </div>
 </div>
 </template>
 
