@@ -39,7 +39,7 @@
     </form>
   </div>
 
-    <footerComponent></footerComponent>
+    <FooterComponent></FooterComponent>
 
 </template>
 
@@ -49,14 +49,14 @@ import toastMessage from '@/stores/toastMessage';
 
 import ToastMessages from '../components/ToastMessages.vue';
 import NavbarComponent from '../components/NavbarComponent.vue';
-import footerComponent from '../components/footerComponent.vue';
+import FooterComponent from '../components/FooterComponent.vue';
 
 const { VITE_URL } = import.meta.env;
 
 export default {
   components: {
     NavbarComponent,
-    footerComponent,
+    FooterComponent,
     ToastMessages,
   },
   data() {
