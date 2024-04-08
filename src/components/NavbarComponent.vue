@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-<div class="position-relative">
+<header class="position-relative">
   <div class="container d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light">
       <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt="logo"></RouterLink>
@@ -23,7 +23,7 @@
       </div>
     </nav>
   </div>
-</div>
+</header>
 </template>
 
 <script>

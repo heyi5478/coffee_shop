@@ -12,6 +12,8 @@
           <h1>歡迎來到 <br>泡咖啡</h1>
           <p>從原產地的一株咖啡樹，最終成為您手中的一杯咖啡；我們堅持採購並且烘焙最高品質的咖啡，這是我們一直努力的基本原則；最初的十英呎到最後十英呎的珍貴體驗，為咖啡的故事做了最佳的註解，同時也塑造出咖啡家族的獨特風味及口感特性，閱讀咖啡的故事，可以讓您更瞭解咖啡，豐富您的咖啡體驗。
           </p>
+          <br>
+          <RouterLink to="/products" class="text-decoration-none">去購物</RouterLink>
 
         </div>
       </div>
@@ -69,7 +71,7 @@
           </div>
           <p>歡迎來到「泡咖啡」！我們是一家專注於帶給您最純正、最風味豐富的咖啡體驗的線上咖啡專賣店。
           </p>
-          <RouterLink to="/about">Read More</RouterLink>
+          <RouterLink to="/about" class="text-decoration-none">瞭解更多</RouterLink>
         </div></div>
       </div>
     </div>
@@ -93,7 +95,7 @@
               <h4>咖啡</h4>
               <p class="text-left mt-3">口感香甜滑順，帶有輕盈的法式香草奶油香氣，為您的味蕾提供美好的享受。</p>
               <router-link to="/products?category=咖啡">
-                <div class="btn btn-info">View Detail</div>
+                <div class="btn btn-info">去逛逛</div>
               </router-link>
             </div>
           </div>
@@ -109,7 +111,7 @@
               <h4>咖啡豆</h4>
               <p class="text-left mt-3">明亮、清爽的口感，同時展現出細膩的風味層次。猶似陽光輕灑過，吹拂起亮麗微風般的愜意感受。</p>
               <router-link to="/products?category=咖啡豆">
-                <div class="btn btn-info">View Detail</div>
+                <div class="btn btn-info">去逛逛</div>
               </router-link>
             </div>
           </div>
@@ -125,7 +127,7 @@
               <h4>蛋糕</h4>
               <p class="text-left mt-3">甜度降低，口感更為滑嫩細緻，是與周遭人們分享的療癒甜點。</p>
               <router-link to="/products?category=蛋糕">
-                <div class="btn btn-info">View Detail</div>
+                <div class="btn btn-info">去逛逛</div>
               </router-link>
             </div>
           </div>

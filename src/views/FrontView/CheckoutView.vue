@@ -2,6 +2,10 @@
   <div class="container">
    <VueLoading :active="isLoading" :z-index="1060" />
    <div class="mt-4">
+    <!-- 訂單進度 -->
+    <div class="mb-4">
+      <OrderTimeLine :step="step" />
+    </div>
     <!-- 購物車列表 -->
      <div class="text-end">
         <button class="btn btn-outline-danger" type="button" @click="deleteAllCarts">
@@ -70,9 +74,10 @@
    </div>
 
    <div class="my-5 row justify-content-center">
+    <p class="text-center text-danger">星號欄位必填</p>
     <VeeForm ref="form" class="col-md-6" v-slot="{ errors }" @submit="createOrder">
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
         <VeeField id="email" name="email" type="email"
          class="form-control" :class="{ 'is-invalid': errors['email'] }"
          placeholder="請輸入 Email" rules="email|required" v-model="form.user.email" />
@@ -80,7 +85,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="name" class="form-label">收件人姓名</label>
+        <label for="name" class="form-label">收件人姓名<span class="text-danger">*</span></label>
         <VeeField id="name" name="姓名" type="text"
          class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
          placeholder="請輸入姓名" rules="required" v-model="form.user.name" />
@@ -88,7 +93,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="tel" class="form-label">收件人電話</label>
+        <label for="tel" class="form-label">收件人電話<span class="text-danger">*</span></label>
         <VeeField id="tel" name="電話" type="tel"
          class="form-control" :class="{ 'is-invalid': errors['電話'] }"
          placeholder="請輸入電話" rules="required|min:8|max:10" v-model="form.user.tel" />
@@ -96,7 +101,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="address" class="form-label">收件人地址</label>
+        <label for="address" class="form-label">收件人地址<span class="text-danger">*</span></label>
         <VeeField id="address" name="地址" type="text"
          class="form-control" :class="{ 'is-invalid': errors['地址'] }"
          placeholder="請輸入地址" rules="required" v-model="form.user.address" />
@@ -109,7 +114,7 @@
          cols="30" rows="10" v-model="form.message"></textarea>
       </div>
       <div class="text-end">
-        <button type="submit" class="btn btn-danger">送出訂單</button>
+        <button type="submit" class="btn btn-primary">送出訂單</button>
       </div>
     </VeeForm>
    </div>
@@ -119,12 +124,15 @@
 <script>
 import { mapActions } from 'pinia';
 import toastMessage from '@/stores/toastMessage';
+import OrderTimeLine from '@/components/OrderTimeLine.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
+  components: { OrderTimeLine },
   data() {
     return {
+      step: 1,
       products: [],
       product: {},
       status: {
