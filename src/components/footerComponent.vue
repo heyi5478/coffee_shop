@@ -8,11 +8,11 @@
             <h4>聯絡我們...</h4>
             <div class="contact_link_box">
               <a href="https://maps.app.goo.gl/YniVbax11MsvvD2g9" target="_blank"><font-awesome-icon icon="fa-brands fa-periscope" />
-              <span>103台北市大同區保安街11號</span></a>
+              <span class="text-decoration-none">103台北市大同區保安街11號</span></a>
               <a href="tel:+11 123456789"><font-awesome-icon icon="fa-solid fa-phone" />
-              <span>+11 123456789</span></a>
+              <span class="text-decoration-none">+11 123456789</span></a>
               <a href="mailto:cafessa@gmail.com"><font-awesome-icon icon="fa-solid fa-envelope" />
-              <span>cafessa@gmail.com</span></a>
+              <span class="text-decoration-none">cafessa@gmail.com</span></a>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
       <div class="footer-info">
         <p>&copy; <span id="displayYear"></span>All Rights Reserved By
         <a href="#">Steve</a></p>
-        <p class="me-2">非官方網站僅作練習使用，無任何商業用途<span> | </span><RouterLink class="ms-2" to="/login">登入後台</RouterLink></p>
+        <p class="me-2">非官方網站僅作練習使用，無任何商業用途<span> | </span><RouterLink class="ms-2 text-decoration-none" to="/login">登入後台</RouterLink></p>
       </div>
     </div>
   </footer>

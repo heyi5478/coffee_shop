@@ -343,6 +343,10 @@ a:focus {
       @include hero_btn($primary1, $white, 10px, 45px, 5px);
       margin-top: 10px;
     }
+
+    a {
+      @include hero_btn($primary1, $white, 10px, 45px, 5px);
+    }
   }
 
   .slider_bg_box {

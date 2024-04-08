@@ -15,7 +15,7 @@
             <ol class="breadcrumb bg-white px-0 mb-0 py-3">
               <li class="breadcrumb-item"><RouterLink class="text-muted" to="/">首頁</RouterLink></li>
               <li class="breadcrumb-item"><RouterLink class="text-muted" to="/products">商店</RouterLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Detail</li>
+              <li class="breadcrumb-item active" aria-current="page">產品內容</li>
             </ol>
           </nav>
           <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
