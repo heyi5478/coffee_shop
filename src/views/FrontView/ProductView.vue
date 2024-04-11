@@ -30,7 +30,7 @@
                   </button>
                 </div>
                 <input type="number" class="form-control border-0 text-center my-auto shadow-none bg-light"
-                max="10" min="1" v-model="productNum" @change="changeNumber(productNum)" />
+                max="10" min="1" v-model="qty" @change="changeNumber(qty)" />
                 <div class="input-group-append">
                   <button class="btn btn-outline-dark border-0 py-2" type="button" id="button-addon2" @click="changeQty(1)">
                     <font-awesome-icon icon="fa-solid fa-plus" />
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="col-6">
-              <a class="text-nowrap btn btn-secondary w-100 py-2" @click.prevent="addToCart(product.id)">加入購物車</a>
+              <a class="text-nowrap btn btn-secondary w-100 py-2" @click.prevent="addToCart(product.id, qty)">加入購物車</a>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       product: {},
-      productNum: 1,
+      qty: 1,
       sameProduct: [],
       sameCategory: '',
       imagesUrl: [],
@@ -147,25 +147,25 @@ export default {
     },
     // 點擊 + - 按鈕做數量判斷
     changeQty(num) {
-      const qty = this.productNum + num;
-      this.changeNumber(qty);
+      const productNum = this.qty + num;
+      this.changeNumber(productNum);
     },
     // 商品數量欄位變動時判斷
     changeNumber(num) {
       if (num >= 10) {
-        this.productNum = 10;
+        this.qty = 10;
         this.pushMessage({
           style: 'danger',
           title: '數量不可超過10喔!',
         });
       } else if (num <= 1) {
-        this.productNum = 1;
+        this.qty = 1;
         this.pushMessage({
           style: 'danger',
           title: '數量不可低於1喔!',
         });
       } else {
-        this.productNum = num;
+        this.qty = num;
       }
     },
   },

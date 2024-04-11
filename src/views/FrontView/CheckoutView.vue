@@ -1,67 +1,69 @@
 <template>
   <div class="container">
-   <VueLoading :active="isLoading" :z-index="1060" />
-   <div class="mt-4">
-    <!-- 訂單進度 -->
-    <div class="mb-4">
-      <OrderTimeLine :step="step" />
-    </div>
-    <!-- 購物車列表 -->
-     <div class="text-end">
+    <!-- 有商品頁面 -->
+    <template v-if="cart.carts.length">
+    <VueLoading :active="isLoading" :z-index="1060" />
+    <div class="mt-4">
+     <!-- 訂單進度 -->
+      <div class="mb-4">
+        <OrderTimeLine :step="step" />
+      </div>
+     <!-- 購物車列表 -->
+      <div class="text-end">
         <button class="btn btn-outline-danger" type="button" @click="deleteAllCarts">
          清空購物車
         </button>
-     </div>
-     <table class="table align-middle">
-       <thead>
-         <tr>
-           <th></th>
-           <th>品名</th>
-           <th style="width: 110px">數量</th>
-           <th>單價</th>
-         </tr>
-       </thead>
-       <tbody>
-         <template v-if="cart.carts">
-           <tr v-for="item in cart.carts" :key="item.id">
-             <td>
-               <button type="button" class="btn btn-outline-danger btn-sm"
-                :disabled="status.loadingItem === item.id"
-                 @click="removeCartItem(item.id)">
-                <i class="bi bi-x"></i>
-               </button>
-             </td>
-             <td>
-              {{ item.product.title }}
-              <div class="text-success" v-if="item.coupon">已套用優惠券</div>
-             </td>
-             <td>
-              <div class="input-group input-group-sm">
-                <input type="number" class="form-control" min="1"
-                 v-model.number="item.qty" @blur="updateCart(item)" />
-                <div class="input-group-text">/ {{ item.product.unit }}</div>
-              </div>
-             </td>
-             <td class="text-end">
-              <small v-if="cart.final_total !== cart.total" class="text-success">折扣價：</small>
-               {{ $filters.currency(item.final_total) }}
-             </td>
-           </tr>
-         </template>
-       </tbody>
-       <tfoot>
-         <tr>
-           <td colspan="3" class="text-end">總計</td>
-           <td class="text-end">{{ $filters.currency(cart.total) }}</td>
-         </tr>
-         <tr v-if="cart.final_total !== cart.total">
-           <td colspan="3" class="text-end text-success">折扣價</td>
-           <td class="text-end text-success">
-            {{ $filters.currency(cart.final_total) }}
-           </td>
-         </tr>
-       </tfoot>
-     </table>
+      </div>
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th></th>
+            <th>品名</th>
+            <th style="width: 110px">數量</th>
+            <th>單價</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-if="cart.carts">
+            <tr v-for="item in cart.carts" :key="item.id">
+              <td>
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                 :disabled="status.loadingItem === item.id"
+                  @click="removeCartItem(item.id)">
+                 <i class="bi bi-x"></i>
+                </button>
+              </td>
+              <td>
+                {{ item.product.title }}
+                <div class="text-success" v-if="item.coupon">已套用優惠券</div>
+              </td>
+              <td>
+                <div class="input-group input-group-sm">
+                  <input type="number" class="form-control" min="1"
+                   v-model.number="item.qty" @blur="updateCart(item)" />
+                  <div class="input-group-text">/ {{ item.product.unit }}</div>
+                </div>
+              </td>
+              <td class="text-end">
+                <small v-if="cart.final_total !== cart.total" class="text-success">折扣價：</small>
+                 {{ $filters.currency(item.final_total) }}
+              </td>
+            </tr>
+          </template>
+        </tbody>
+        <tfoot>
+          <tr>
+             <td colspan="3" class="text-end">總計</td>
+             <td class="text-end">{{ $filters.currency(cart.total) }}</td>
+          </tr>
+          <tr v-if="cart.final_total !== cart.total">
+            <td colspan="3" class="text-end text-success">折扣價</td>
+            <td class="text-end text-success">
+             {{ $filters.currency(cart.final_total) }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
       <!-- 優惠卷 -->
       <!-- <div class="input-group mb-3 input-group-sm">
         <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼" />
@@ -71,7 +73,7 @@
           </button>
         </div>
       </div> -->
-   </div>
+    </div>
 
    <div class="my-5 row justify-content-center">
     <p class="text-center text-danger">星號欄位必填</p>
@@ -118,7 +120,21 @@
       </div>
     </VeeForm>
    </div>
- </div>
+   </template>
+   <!-- 無商品頁面 -->
+   <template v-else>
+    <div class="py-10 text-center">
+      <p class="fs-5 mb-14">購物車無商品，快去購買喜歡的甜點吧！</p>
+        <button
+          type="button"
+          class="btn btn-secondary text-white rounded-1 px-6 px-md-10 py-2 py-md-4"
+          @click="$router.push('/products')"
+        >
+          購物去
+        </button>
+    </div>
+   </template>
+  </div>
 </template>
 
 <script>
