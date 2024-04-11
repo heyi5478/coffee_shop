@@ -19,6 +19,12 @@
             </ol>
           </nav>
           <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
+          <div class="mt-5">
+          <p>{{ product.description }}</p>
+        </div>
+        <div class="">
+          <p class="text-muted">{{ product.content }}</p>
+        </div>
           <p class="mb-0 text-muted text-end"><del>NT${{ product.origin_price }}</del></p>
           <p class="h4 fw-bold text-end">{{ product.price }}</p>
           <div class="row align-items-center">
@@ -45,12 +51,12 @@
         </div>
       </div>
       <div class="row my-5">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <p>{{ product.description }}</p>
         </div>
         <div class="col-md-3">
           <p class="text-muted">{{ product.content }}</p>
-        </div>
+        </div> -->
       </div>
 
       <div class="row justify-content-center bg-primary">
