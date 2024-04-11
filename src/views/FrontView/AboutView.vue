@@ -26,7 +26,7 @@
             立即來「泡咖啡」，開啟您的咖啡之旅！
 
         </p>
-        <RouterLink to="/products">前往購買</RouterLink>
+        <RouterLink to="/products" class="text-decoration-none">前往購買</RouterLink>
       </div></div>
     </div>
   </div>
