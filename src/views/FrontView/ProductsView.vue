@@ -37,7 +37,7 @@
                 <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
               </a>
               <div class="card-body p-0 text-center">
-                <h4 class="mb-0 mt-3"><RouterLink :to="`/product/${product.id}`" class="text-decoration-none">{{ product.title }}</RouterLink></h4>
+                <h4 class="mb-2 mt-3"><RouterLink :to="`/product/${product.id}`" class="text-decoration-none">{{ product.title }}</RouterLink></h4>
                 <p class="card-text mb-0">NT${{ product.price }} <span class="text-muted "><del>NT${{ product.origin_price }}</del></span></p>
                 <p class="text-muted mt-3"></p>
               </div>
