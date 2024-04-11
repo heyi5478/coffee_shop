@@ -10,7 +10,8 @@
       </div>
      <!-- 購物車列表 -->
       <div class="text-end">
-        <button class="btn btn-outline-danger" type="button" @click="deleteAllCarts">
+        <button class="btn btn-outline-danger" type="button"
+         @click="deleteAllCarts">
          清空購物車
         </button>
       </div>
@@ -235,22 +236,55 @@ export default {
         qty: data.qty,
       };
 
-      this.$http.put(url, { data: cart }).then((response) => {
-        this.pushMessage({
-          style: 'success',
-          title: '更新購物車',
-          content: response.data.message,
-        });
-        this.isLoading = false;
-        this.getCart();
-      }).catch((error) => {
-        this.isLoading = false;
+      if (data.qty === 0) {
+        this.removeCartItem(data.id);
+      } else if (data.qty >= 100) {
+        cart.qty = 100;
         this.pushMessage({
           style: 'danger',
-          title: '更新購物車',
-          content: error.response.data.message,
+          title: '數量不可以超過 100',
         });
-      });
+      } else if (data.qty < 0) {
+        cart.qty = 1;
+        this.pushMessage({
+          style: 'danger',
+          title: '數量不可以小於 1',
+        });
+      } else {
+        this.$http.put(url, { data: cart }).then((response) => {
+          this.pushMessage({
+            style: 'success',
+            title: '更新購物車',
+            content: response.data.message,
+          });
+          this.isLoading = false;
+          this.getCart();
+        }).catch((error) => {
+          this.isLoading = false;
+          this.pushMessage({
+            style: 'danger',
+            title: '更新購物車',
+            content: error.response.data.message,
+          });
+        });
+      }
+
+      // this.$http.put(url, { data: cart }).then((response) => {
+      //   this.pushMessage({
+      //     style: 'success',
+      //     title: '更新購物車',
+      //     content: response.data.message,
+      //   });
+      //   this.isLoading = false;
+      //   this.getCart();
+      // }).catch((error) => {
+      //   this.isLoading = false;
+      //   this.pushMessage({
+      //     style: 'danger',
+      //     title: '更新購物車',
+      //     content: error.response.data.message,
+      //   });
+      // });
     },
     addCouponCode() {
       const url = `${VITE_URL}/api/${VITE_PATH}/coupon`;
