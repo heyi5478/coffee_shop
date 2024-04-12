@@ -141,6 +141,8 @@
 <script>
 import { mapActions } from 'pinia';
 import toastMessage from '@/stores/toastMessage';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Swal from 'sweetalert2';
 import OrderTimeLine from '@/components/OrderTimeLine.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
@@ -174,11 +176,13 @@ export default {
     deleteAllCarts() {
       this.isLoading = true;
       const url = `${VITE_URL}/api/${VITE_PATH}/carts`;
-      this.$http.delete(url).then((response) => {
-        this.pushMessage({
-          style: 'success',
-          title: '清除購物車',
-          content: response.data.message,
+      this.$http.delete(url).then(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '購物車已清空',
+          showConfirmButton: false,
+          timer: 1500,
         });
         this.getCart();
         this.isLoading = false;
@@ -210,11 +214,13 @@ export default {
       this.status.loadingItem = id;
       const url = `${VITE_URL}/api/${VITE_PATH}/cart/${id}`;
       this.isLoading = true;
-      this.$http.delete(url).then((response) => {
-        this.pushMessage({
-          style: 'success',
+      this.$http.delete(url).then(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
           title: '移除購物車品項',
-          content: response.data.message,
+          showConfirmButton: false,
+          timer: 1500,
         });
         this.status.loadingItem = '';
         this.isLoading = false;
