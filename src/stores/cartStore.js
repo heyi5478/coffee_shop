@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 // import useLoadingStore from './loadingStore';
 // import toastMessage from './toastMessage';
 
@@ -36,13 +36,13 @@ export default defineStore('cartStore', {
 
       axios.post(`${VITE_URL}/api/${VITE_PATH}/cart`, { data })
         .then(() => {
-          // 在此處調用 pushMessage 方法
-          // console.log(toastMessage.pushMessage);
-          // toastMessage.pushMessage({
-          //  style: 'success',
-          //  title: 'Success',
-          //  ontent: 'Product added to cart successfully!' });
-          // console.log(res);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '已加入購物車',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.getCart();
         });
     },
