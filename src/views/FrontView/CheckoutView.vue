@@ -11,7 +11,7 @@
      <!-- 購物車列表 -->
       <div class="text-end">
         <button class="btn btn-outline-danger" type="button"
-         @click="deleteAllCarts">
+         @click="openDeleteModal('all')">
          清空購物車
         </button>
       </div>
@@ -75,6 +75,12 @@
         </div>
       </div> -->
     </div>
+
+    <AlertDeleteCart
+      ref="alertDeleteCart"
+      :delete-state="deleteState"
+      :cart-item="cartItem"
+    />
 
    <div class="my-5 row justify-content-center">
     <p class="text-center text-danger">星號欄位必填</p>
@@ -144,11 +150,12 @@ import toastMessage from '@/stores/toastMessage';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Swal from 'sweetalert2';
 import OrderTimeLine from '@/components/OrderTimeLine.vue';
+import AlertDeleteCart from '@/components/AlertDeleteCart.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
-  components: { OrderTimeLine },
+  components: { OrderTimeLine, AlertDeleteCart },
   data() {
     return {
       step: 1,
@@ -169,6 +176,8 @@ export default {
       cart: {},
       isLoading: false,
       coupon_code: '',
+      deleteState: '',
+      cartItem: '',
     };
   },
   methods: {
@@ -234,6 +243,13 @@ export default {
         });
       });
     },
+
+    openDeleteModal(state, item) {
+      this.deleteState = state;
+      this.cartItem = item;
+      this.$refs.alertDeleteCart.openModal();
+    },
+
     updateCart(data) {
       this.isLoading = true;
       const url = `${VITE_URL}/api/${VITE_PATH}/cart/${data.id}`;
