@@ -32,10 +32,12 @@
         <div class="row">
           <div class="col-md-6" v-for="product in products" :key="product.id">
             <div class="card border-0 mb-4 position-relative position-relative">
-              <img :src="product.imageUrl" class="card-img-top object-fit-cover rounded-1" height="300" alt="...">
-              <a href="#" class="text-dark">
-                <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-              </a>
+              <RouterLink :to="`/product/${product.id}`" class="">
+                <img :src="product.imageUrl" class="card-img-top card-img object-fit-cover rounded-1" height="300" alt="...">
+                <div class=" over card-img-overlay">
+                  <h3 class="link text-white">了解更多</h3>
+                </div>
+              </RouterLink>
               <div class="card-body p-0 text-center">
                 <h4 class="mb-2 mt-3"><RouterLink :to="`/product/${product.id}`" class="text-decoration-none">{{ product.title }}</RouterLink></h4>
                 <p class="card-text mb-0">NT${{ product.price }} <span class="text-muted "><del>NT${{ product.origin_price }}</del></span></p>
@@ -105,3 +107,24 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.over{
+  position: absolute;
+  top:30%;
+  left: 35%;
+  font-size:2rem;
+  display: none;
+  z-index:1;
+  .link{
+      text-decoration: none;
+  }
+}
+.card:hover .card-img{
+  filter: contrast(50%);
+  transform: scale(1.1);
+}
+.card:hover .over{
+  display: inline-block;
+}
+</style>
