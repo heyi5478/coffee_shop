@@ -139,11 +139,10 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import toastMessage from '@/stores/toastMessage';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Swal from 'sweetalert2';
 import OrderTimeLine from '@/components/OrderTimeLine.vue';
+import checkoutStore from '@/stores/checkoutStore';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -152,7 +151,6 @@ export default {
   data() {
     return {
       step: 1,
-      products: [],
       product: {},
       status: {
         loadingItem: '',
@@ -166,116 +164,125 @@ export default {
         },
         message: '',
       },
-      cart: {},
       isLoading: false,
       coupon_code: '',
     };
   },
+  computed: {
+    ...mapState(checkoutStore, ['cart']),
+  },
   methods: {
     ...mapActions(toastMessage, ['pushMessage']),
-    deleteAllCarts() {
-      this.isLoading = true;
-      const url = `${VITE_URL}/api/${VITE_PATH}/carts`;
-      this.$http.delete(url).then(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '購物車已清空',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        this.getCart();
-        this.isLoading = false;
-      }).catch((error) => {
-        this.isLoading = false;
-        this.pushMessage({
-          style: 'danger',
-          title: '清除購物車',
-          content: error.response.data.message,
-        });
-      });
-    },
-    getCart() {
-      const url = `${VITE_URL}/api/${VITE_PATH}/cart`;
-      this.isLoading = true;
-      this.$http.get(url).then((response) => {
-        this.cart = response.data.data;
-        console.log('getcart', this.cart);
-        this.isLoading = false;
-      }).catch((error) => {
-        this.isLoading = false;
-        this.pushMessage({
-          style: 'danger',
-          title: '取得購物車資訊',
-          content: error.response.data.message,
-        });
-      });
-    },
-    removeCartItem(id) {
-      this.status.loadingItem = id;
-      const url = `${VITE_URL}/api/${VITE_PATH}/cart/${id}`;
-      this.isLoading = true;
-      this.$http.delete(url).then(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '移除購物車品項',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        this.status.loadingItem = '';
-        this.isLoading = false;
-        this.getCart();
-      }).catch((error) => {
-        this.isLoading = false;
-        this.pushMessage({
-          style: 'danger',
-          title: '移除購物車品項',
-          content: error.response.data.message,
-        });
-      });
-    },
-    updateCart(data) {
-      this.isLoading = true;
-      const url = `${VITE_URL}/api/${VITE_PATH}/cart/${data.id}`;
-      const cart = {
-        product_id: data.product_id,
-        qty: data.qty,
-      };
+    ...mapActions(checkoutStore, [
+      'getCarts',
+      'deleteAllCarts',
+      'removeCartItem',
+      'updateCart',
+    ]),
 
-      if (data.qty === 0) {
-        this.removeCartItem(data.id);
-      } else if (data.qty >= 100) {
-        cart.qty = 100;
-        this.pushMessage({
-          style: 'danger',
-          title: '數量不可以超過 100',
-        });
-      } else if (data.qty < 0) {
-        cart.qty = 1;
-        this.pushMessage({
-          style: 'danger',
-          title: '數量不可以小於 1',
-        });
-      } else {
-        this.$http.put(url, { data: cart }).then((response) => {
-          this.pushMessage({
-            style: 'success',
-            title: '更新購物車',
-            content: response.data.message,
-          });
-          this.isLoading = false;
-          this.getCart();
-        }).catch((error) => {
-          this.isLoading = false;
-          this.pushMessage({
-            style: 'danger',
-            title: '更新購物車',
-            content: error.response.data.message,
-          });
-        });
-      }
-    },
+    // deleteAllCarts() {
+    //   this.isLoading = true;
+    //   const url = `${VITE_URL}/api/${VITE_PATH}/carts`;
+    //   this.$http.delete(url).then(() => {
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: '購物車已清空',
+    //       showConfirmButton: false,
+    //       timer: 1500,
+    //     });
+    //     this.getCart();
+    //     this.isLoading = false;
+    //   }).catch((error) => {
+    //     this.isLoading = false;
+    //     this.pushMessage({
+    //       style: 'danger',
+    //       title: '清除購物車',
+    //       content: error.response.data.message,
+    //     });
+    //   });
+    // },
+    // getCart() {
+    //   const url = `${VITE_URL}/api/${VITE_PATH}/cart`;
+    //   this.isLoading = true;
+    //   this.$http.get(url).then((response) => {
+    //     this.cart = response.data.data;
+    //     console.log('getcart', this.cart);
+    //     this.isLoading = false;
+    //   }).catch((error) => {
+    //     this.isLoading = false;
+    //     this.pushMessage({
+    //       style: 'danger',
+    //       title: '取得購物車資訊',
+    //       content: error.response.data.message,
+    //     });
+    //   });
+    // },
+    // removeCartItem(id) {
+    //   this.status.loadingItem = id;
+    //   const url = `${VITE_URL}/api/${VITE_PATH}/cart/${id}`;
+    //   this.isLoading = true;
+    //   this.$http.delete(url).then(() => {
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: '移除購物車品項',
+    //       showConfirmButton: false,
+    //       timer: 1500,
+    //     });
+    //     this.status.loadingItem = '';
+    //     this.isLoading = false;
+    //     this.getCart();
+    //   }).catch((error) => {
+    //     this.isLoading = false;
+    //     this.pushMessage({
+    //       style: 'danger',
+    //       title: '移除購物車品項',
+    //       content: error.response.data.message,
+    //     });
+    //   });
+    // },
+    // updateCart(data) {
+    //   this.isLoading = true;
+    //   const url = `${VITE_URL}/api/${VITE_PATH}/cart/${data.id}`;
+    //   const cart = {
+    //     product_id: data.product_id,
+    //     qty: data.qty,
+    //   };
+
+    //   if (data.qty === 0) {
+    //     this.removeCartItem(data.id);
+    //   } else if (data.qty >= 100) {
+    //     cart.qty = 100;
+    //     this.pushMessage({
+    //       style: 'danger',
+    //       title: '數量不可以超過 100',
+    //     });
+    //   } else if (data.qty < 0) {
+    //     cart.qty = 1;
+    //     this.pushMessage({
+    //       style: 'danger',
+    //       title: '數量不可以小於 1',
+    //     });
+    //   } else {
+    //     this.$http.put(url, { data: cart }).then((response) => {
+    //       this.pushMessage({
+    //         style: 'success',
+    //         title: '更新購物車',
+    //         content: response.data.message,
+    //       });
+    //       this.isLoading = false;
+    //       this.getCart();
+    //     }).catch((error) => {
+    //       this.isLoading = false;
+    //       this.pushMessage({
+    //         style: 'danger',
+    //         title: '更新購物車',
+    //         content: error.response.data.message,
+    //       });
+    //     });
+    //   }
+    // },
     addCouponCode() {
       const url = `${VITE_URL}/api/${VITE_PATH}/coupon`;
       const coupon = {
@@ -288,7 +295,7 @@ export default {
           title: '加入優惠券',
           content: response.data.message,
         });
-        this.getCart();
+        this.getCarts();
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
@@ -318,7 +325,7 @@ export default {
     },
   },
   created() {
-    this.getCart();
+    this.getCarts();
   },
 };
 </script>
