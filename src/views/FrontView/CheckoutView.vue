@@ -159,7 +159,6 @@ export default {
   data() {
     return {
       step: 1,
-      products: [],
       product: {},
       status: {
         loadingItem: '',
@@ -350,7 +349,6 @@ export default {
     },
   },
   created() {
-    // this.getProducts();
     this.getCart();
   },
 };
