@@ -200,6 +200,7 @@ export default {
       this.isLoading = true;
       this.$http.get(url).then((response) => {
         this.cart = response.data.data;
+        console.log('getcart', this.cart);
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
@@ -274,23 +275,6 @@ export default {
           });
         });
       }
-
-      // this.$http.put(url, { data: cart }).then((response) => {
-      //   this.pushMessage({
-      //     style: 'success',
-      //     title: '更新購物車',
-      //     content: response.data.message,
-      //   });
-      //   this.isLoading = false;
-      //   this.getCart();
-      // }).catch((error) => {
-      //   this.isLoading = false;
-      //   this.pushMessage({
-      //     style: 'danger',
-      //     title: '更新購物車',
-      //     content: error.response.data.message,
-      //   });
-      // });
     },
     addCouponCode() {
       const url = `${VITE_URL}/api/${VITE_PATH}/coupon`;
@@ -334,7 +318,6 @@ export default {
     },
   },
   created() {
-    // this.getProducts();
     this.getCart();
   },
 };

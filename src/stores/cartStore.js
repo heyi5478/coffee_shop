@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 // import useLoadingStore from './loadingStore';
 // import toastMessage from './toastMessage';
 
-// console.log(import.meta.env.VITE_URL, import.meta.env.VITE_PATH);
 const { VITE_URL, VITE_PATH } = import.meta.env;
 // const { loadingState } = useLoadingStore();
 
@@ -24,7 +23,6 @@ export default defineStore('cartStore', {
           this.carts = res.data.data.carts;
           this.final_total = res.data.data.final_total;
           this.total = res.data.data.total;
-          // loadingState(false);
           // console.log('pinia cart', this.carts);
         });
     },
