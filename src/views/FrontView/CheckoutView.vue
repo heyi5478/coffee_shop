@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 有商品頁面 -->
-    <template v-if="cart.carts.length">
+    <template v-if="cart?.carts?.length">
     <VueLoading :active="isLoading" :z-index="1060" />
     <div class="mt-4">
      <!-- 訂單進度 -->
