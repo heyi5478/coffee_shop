@@ -145,7 +145,7 @@
 import { mapActions, mapState } from 'pinia';
 import toastMessage from '@/stores/toastMessage';
 import OrderTimeLine from '@/components/OrderTimeLine.vue';
-import checkoutStore from '@/stores/checkoutStore';
+import cartStore from '@/stores/cartStore';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -172,12 +172,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(checkoutStore, ['cart']),
+    ...mapState(cartStore, ['cart', 'carts']),
   },
   methods: {
     ...mapActions(toastMessage, ['pushMessage']),
-    ...mapActions(checkoutStore, [
-      'getCarts',
+    ...mapActions(cartStore, [
+      'getCart',
       'deleteAllCarts',
       'removeCartItem',
       'updateCart',
@@ -298,7 +298,7 @@ export default {
           title: '加入優惠券',
           content: response.data.message,
         });
-        this.getCarts();
+        this.getCart();
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
@@ -328,7 +328,7 @@ export default {
     },
   },
   created() {
-    this.getCarts();
+    this.getCart();
   },
 };
 </script>

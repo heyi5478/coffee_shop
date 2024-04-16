@@ -12,6 +12,7 @@ const { pushMessages } = useToastMessageStore();
 export default defineStore('checkoutStore', {
   state: () => ({
     cart: {},
+    carts: [],
     final_total: 0,
     total: 0,
     status: {
@@ -26,9 +27,9 @@ export default defineStore('checkoutStore', {
         .then((res) => {
         //   this.cart = res.data.data;
           this.cart = res.data.data;
+          this.carts = res.data.data.carts;
           this.final_total = res.data.data.final_total;
           this.total = res.data.data.total;
-          console.log('pinia cart', this.cart);
         }).catch((error) => {
           this.isLoading = false;
           pushMessages({
