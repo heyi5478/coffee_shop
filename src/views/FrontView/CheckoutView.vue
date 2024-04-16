@@ -5,7 +5,7 @@
       <VueLoading :active="isLoading" :z-index="1060" />
       <div class="mt-4 row justify-content-center">
      <!-- 訂單進度 -->
-        <div class="mb-4">
+        <div class="mb-4 mt-9">
           <OrderTimeLine :step="step" />
         </div>
      <!-- 購物車列表 -->
