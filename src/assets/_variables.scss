@@ -302,6 +302,7 @@ $cyans: (
 
 // scss-docs-start theme-color-variables
 $primary:       #96bb7c !default;
+$primary-dark:  rgb(128 164 88) !default;
 $secondary:     #184d47 !default;
 $success:       $green !default;
 $info:          $cyan !default;
@@ -314,6 +315,7 @@ $dark:          $gray-900 !default;
 // scss-docs-start theme-colors-map
 $theme-colors: (
   "primary":    $primary,
+  "primary-dark": $primary-dark,
   "secondary":  $secondary,
   "success":    $success,
   "info":       $info,

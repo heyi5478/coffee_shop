@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-<header class="header fixed-top bg-light bg-opacity-50">
+<header class="header fixed-top " :class="[{ 'bg-light': !isScrolled,'bg-opacity-50': !isScrolled }, { 'bg-opacity-100': isScrolled, 'bg-primary': isScrolled, 'shadow-sm': isScrolled }]">
   <div class="container d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light">
       <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt="logo"></RouterLink>
@@ -32,14 +32,41 @@ import { mapActions, mapState } from 'pinia';
 import cartStore from '../stores/cartStore';
 
 export default {
+  data() {
+    return {
+      isScrolled: false,
+      lastScrollY: 0,
+      ticking: false,
+    };
+  },
   computed: {
     ...mapState(cartStore, ['carts']),
   },
   methods: {
     ...mapActions(cartStore, ['getCart']),
+    handleScroll() {
+      this.lastScrollY = window.scrollY;
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.isScrolled = this.lastScrollY > 0;
+          this.ticking = false;
+        });
+        this.ticking = true;
+      }
+    },
   },
   mounted() {
     this.getCart();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>
+
+<style scoped>
+.header {
+  transition: background-color .5s ease;
+}
+</style>
