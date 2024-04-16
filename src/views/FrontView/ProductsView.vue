@@ -1,5 +1,19 @@
 <!-- eslint-disable max-len -->
 <template>
+  <!-- banner -->
+  <div class="position-relative mb-7 mb-md-9">
+    <img class="d-lg-none d-block w-100 object-fit-cover " style="height: 30vh;"
+     src="../../assets/images/banner2.png" alt="banner">
+     <img class="d-lg-block d-none w-100 object-fit-cover " style="height: 80vh;"
+     src="../../assets/images/banner2.png" alt="banner">
+    <h2
+      class="position-absolute translate-middle top-50
+       start-50 h2 fw-bold text-white pageBanner-text"
+    >
+      線上商店
+    </h2>
+  </div>
+
   <div class="container mt-md-5 mt-3 mb-7">
     <div class="row">
       <div class="col-md-4">

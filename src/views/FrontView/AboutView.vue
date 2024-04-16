@@ -1,4 +1,18 @@
 <template>
+<!-- banner -->
+<div class="position-relative mb-7 mb-md-9">
+  <img class="d-lg-none d-block w-100 object-fit-cover " style="height: 30vh;"
+     src="../../assets/images/banner2.png" alt="banner">
+  <img class="d-lg-block d-none w-100 object-fit-cover " style="height: 80vh;"
+     src="../../assets/images/banner2.png" alt="banner">
+  <h2
+      class="position-absolute translate-middle top-50
+       start-50 h2 fw-bold text-white pageBanner-text"
+  >
+      關於我們
+  </h2>
+</div>
+
 <section class="about_section layout_padding">
   <div class="container">
     <div class="row">

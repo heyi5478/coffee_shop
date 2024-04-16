@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-<header class="position-relative">
+<header class="header fixed-top bg-light bg-opacity-50">
   <div class="container d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light">
       <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt="logo"></RouterLink>

@@ -1,5 +1,18 @@
 <!-- eslint-disable max-len -->
 <template>
+    <div class="position-relative mb-7 mb-md-9">
+      <img class="d-lg-none d-block w-100 object-fit-cover " style="height: 30vh;"
+       src="../../assets/images/banner2.png" alt="banner">
+      <img class="d-lg-block d-none w-100 object-fit-cover " style="height: 80vh;"
+       src="../../assets/images/banner2.png" alt="banner">
+      <h2
+      class="position-absolute translate-middle top-50
+       start-50 h2 fw-bold text-white pageBanner-text"
+      >
+        商品內容
+      </h2>
+    </div>
+
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-7">
