@@ -4,15 +4,15 @@
   <div class="container d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light">
       <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt="logo"></RouterLink>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" @click="toggleCollapse">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-end" :class="{ 'show': isCollapsed }" id="navbarNavAltMarkup">
         <div class="navbar-nav">
               <!-- <RouterLink class="nav-item nav-link me-4 active" to="/">首頁 <span class="sr-only">(current)</span></RouterLink> -->
-          <RouterLink class="nav-item nav-link me-4" to="/products">線上商店</RouterLink>
-          <RouterLink class="nav-item nav-link me-4" to="/about">關於</RouterLink>
-          <RouterLink class="btn position-relative" style="width: 44px;" to="/checkout">
+          <RouterLink class="nav-item nav-link me-4" to="/products" @click="closeMobileMenu">線上商店</RouterLink>
+          <RouterLink class="nav-item nav-link me-4" to="/about" @click="closeMobileMenu">關於</RouterLink>
+          <RouterLink class="btn position-relative" style="width: 44px;" to="/checkout" @click="closeMobileMenu">
             <i class="bi bi-cart"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{ this.carts?.length }}
@@ -37,6 +37,7 @@ export default {
       isScrolled: false,
       lastScrollY: 0,
       ticking: false,
+      isCollapsed: false,
     };
   },
   computed: {
@@ -53,6 +54,12 @@ export default {
         });
         this.ticking = true;
       }
+    },
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
+    closeMobileMenu() {
+      this.isCollapsed = false;
     },
   },
   mounted() {
