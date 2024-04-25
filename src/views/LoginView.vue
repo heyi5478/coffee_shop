@@ -1,7 +1,20 @@
 <template>
-    <NavbarComponent></NavbarComponent>
+  <NavbarComponent></NavbarComponent>
 
-    <div class="container mt-5 mb-5 text-center">
+    <!-- banner -->
+  <div class="position-relative mb-7 mb-md-9">
+    <img class="d-lg-none d-block w-100 object-fit-cover " style="height: 30vh;"
+     src="@/assets/images/banner2.png" alt="banner">
+    <img class="d-lg-block d-none w-100 object-fit-cover " style="height: 80vh;"
+     src="@/assets/images/banner2.png" alt="banner">
+    <h2
+      class="position-absolute translate-middle top-50
+       start-50 h2 fw-bold text-white pageBanner-text"
+    >
+    登入
+    </h2>
+  </div>
+  <div class="container mt-5 mb-5 text-center">
     <VueLoading :active="isLoading" :z-index="1060" />
     <ToastMessages />
     <form class="row justify-content-center" @submit.prevent="signIn">
