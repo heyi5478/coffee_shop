@@ -1,5 +1,5 @@
 # 南部輕旅遊網站
-![首頁PC及手機板](https://imgur.com/pOMZ5HL)
+![首頁PC及手機板](https://i.imgur.com/pOMZ5HL.png)
 
 
 ## 專案說明
@@ -36,7 +36,7 @@
 
 ## 前台簡介
 ### 首頁
-![首頁](https://imgur.com/pOMZ5HL)
+![首頁](https://i.imgur.com/pOMZ5HL.png)
 
 
 ### 線上商店
