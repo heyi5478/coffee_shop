@@ -1,4 +1,4 @@
-# 南部輕旅遊網站
+# 泡咖啡電商網站
 ![首頁PC及手機板](https://i.imgur.com/pOMZ5HL.png)
 
 
@@ -40,21 +40,21 @@
 
 
 ### 線上商店
-![線上商店](https://imgur.com/WrAOqnR)
+![線上商店](https://i.imgur.com/WrAOqnR.png)
 
 ### 商品內容
-![商品內容](https://imgur.com/NB4E7HI)
+![商品內容](https://i.imgur.com/NB4E7HI.png)
 
 ### 管理員登入
 ![管理員登入](https://github.com/GinaTung/2024-southerntravelwebsite-fin/assets/88545191/c1576e0e-5828-4602-9a65-cdba8d2b4a37)
 
 ### 購物車
-![購物車](https://imgur.com/IFmnnoD)
+![購物車](https://i.imgur.com/IFmnnoD.png)
 
 
 ## 後台簡介
 ### 訂單管理
-![image](https://imgur.com/ZOzKrEk)
+![image](https://i.imgur.com/ZOzKrEk.png)
 
 # 2024-southerntravelwebsite-fin
 This template should help get you started developing with Vue 3 in Vite.
