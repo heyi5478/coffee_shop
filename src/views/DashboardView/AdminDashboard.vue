@@ -25,9 +25,21 @@ export default {
   },
   methods: {
     ...mapActions(toastMessage, ['pushMessage']),
+    getCookie(name) {
+      const cookies = document.cookie.split(';');
+      const foundCookie = cookies.find((cookie) => {
+        const [cookieName] = cookie.trim().split('=');
+        return cookieName === name;
+      });
+      if (foundCookie) {
+        const [, cookieValue] = foundCookie.trim().split('=');
+        return decodeURIComponent(cookieValue);
+      }
+      return null;
+    },
   },
   created() {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const token = this.getCookie('hexToken');
     this.$http.defaults.headers.common.Authorization = `${token}`;
     const api = `${VITE_URL}/api/user/check`;
     this.$http.post(api)
