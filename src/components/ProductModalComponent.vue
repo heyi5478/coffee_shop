@@ -25,6 +25,7 @@
                   <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                 </label>
                 <input type="file" id="customFile" class="form-control"
+                 accept="image/jpeg,image/png,image/gif,image/webp"
                  ref="fileInput" @change="uploadFile" />
               </div>
               <img class="img-fluid" alt="產品圖" :src="tempProduct.imageUrl" />
@@ -164,8 +165,45 @@ export default {
     ...mapActions(toastMessage, ['pushMessage']),
     uploadFile() {
       const uploadedFile = this.$refs.fileInput.files[0];
+
+      if (!uploadedFile) {
+        this.pushMessage({
+          style: 'danger',
+          title: '文件上傳錯誤',
+          content: '請選擇要上傳的文件',
+        });
+        return;
+      }
+
+      // 1. 文件類型驗證
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (!allowedTypes.includes(uploadedFile.type)) {
+        this.pushMessage({
+          style: 'danger',
+          title: '檔案類型錯誤',
+          content: '僅支援 JPEG、PNG、GIF、WebP 格式',
+        });
+        this.$refs.fileInput.value = '';
+        return;
+      }
+
+      // 2. 文件大小驗證 (5MB)
+      const maxSize = 5 * 1024 * 1024;
+      if (uploadedFile.size > maxSize) {
+        this.pushMessage({
+          style: 'danger',
+          title: '檔案過大',
+          content: '檔案大小不得超過 5MB',
+        });
+        this.$refs.fileInput.value = '';
+        return;
+      }
+
+      // 3. 文件名稱清理
+      const sanitizedName = uploadedFile.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+
       const formData = new FormData();
-      formData.append('file-to-upload', uploadedFile);
+      formData.append('file-to-upload', uploadedFile, sanitizedName);
       const url = `${VITE_URL}/api/${VITE_PATH}/admin/upload`;
       this.status.fileUploading = true;
       this.$http.post(url, formData, {
@@ -178,15 +216,27 @@ export default {
         this.$refs.fileInput.value = '';
         this.pushMessage({
           style: 'success',
-          title: '圖片上傳結果',
-          content: response.data.message,
+          title: '圖片上傳成功',
+          content: '圖片上傳完成',
         });
       }).catch((error) => {
         this.status.fileUploading = false;
+        this.$refs.fileInput.value = '';
+
+        // 安全的錯誤處理
+        let errorMessage = '上傳失敗，請稍後再試';
+        if (error.response?.status === 413) {
+          errorMessage = '檔案過大，請選擇較小的圖片';
+        } else if (error.response?.status === 415) {
+          errorMessage = '不支援的檔案格式';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '伺服器錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
-          title: '圖片上傳結果',
-          content: error.response.data.message,
+          title: '圖片上傳失敗',
+          content: errorMessage,
         });
       });
     },

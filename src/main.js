@@ -5,8 +5,8 @@ import { createPinia } from 'pinia';
 import axios from 'axios';
 // 匯入 vue-axios 主套件
 import VueAxios from 'vue-axios';
-// 匯入 jquery 主套件
-import jquery from 'jquery';
+// jQuery 已移除，如需使用請在個別組件中導入
+// import jquery from 'jquery';
 // 匯入 vue-loading 主套件
 import Loading from 'vue-loading-overlay';
 // 匯入 CKEditor 主套件
@@ -60,7 +60,9 @@ setLocale('zh_TW');
 /* add icons to the library */
 library.add(faFacebook, faLine, faInstagram, faPeriscope, faPhone, faEnvelope, faPlus, faMinus);
 
-window.$ = jquery;
+// jQuery 全域暴露已移除以提升安全性
+// 如需使用 jQuery，請在個別組件中直接 import jquery
+// window.$ = jquery;
 
 const app = createApp(App);
 

@@ -113,10 +113,18 @@ export default {
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '無法取得訂單資料';
+        if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '錯誤訊息',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
@@ -152,10 +160,19 @@ export default {
       }).catch((error) => {
         this.isLoading = false;
 
+        let errorMessage = '更新訂單失敗';
+        if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status === 404) {
+          errorMessage = '訂單不存在';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '錯誤訊息',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
@@ -171,10 +188,20 @@ export default {
         this.getOrders(this.currentPage);
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '刪除訂單失敗';
+        if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status === 404) {
+          errorMessage = '訂單不存在';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '錯誤訊息',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },

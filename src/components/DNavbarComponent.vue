@@ -39,10 +39,15 @@ export default {
           });
           this.$router.push('/login');
         }).catch((error) => {
+          let errorMessage = '登出失敗，請稍後再試';
+          if (error.response?.status >= 500) {
+            errorMessage = '系統暫時無法使用，請稍後再試';
+          }
+
           this.pushMessage({
             style: 'danger',
             title: '登出狀態',
-            content: error.response.data.message,
+            content: errorMessage,
           });
         });
     },

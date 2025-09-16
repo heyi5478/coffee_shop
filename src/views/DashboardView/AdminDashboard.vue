@@ -25,9 +25,21 @@ export default {
   },
   methods: {
     ...mapActions(toastMessage, ['pushMessage']),
+    getCookie(name) {
+      const cookies = document.cookie.split(';');
+      const foundCookie = cookies.find((cookie) => {
+        const [cookieName] = cookie.trim().split('=');
+        return cookieName === name;
+      });
+      if (foundCookie) {
+        const [, cookieValue] = foundCookie.trim().split('=');
+        return decodeURIComponent(cookieValue);
+      }
+      return null;
+    },
   },
   created() {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const token = this.getCookie('hexToken');
     this.$http.defaults.headers.common.Authorization = `${token}`;
     const api = `${VITE_URL}/api/user/check`;
     this.$http.post(api)
@@ -39,10 +51,17 @@ export default {
         });
         this.status = true;
       }).catch((error) => {
+        let errorMessage = '身份驗證失敗，請重新登入';
+        if (error.response?.status === 401) {
+          errorMessage = '登入已過期，請重新登入';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統暫時無法使用，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '錯誤訊息',
-          content: error.response.data.message,
+          content: errorMessage,
         });
         this.$router.push('/login');
       });

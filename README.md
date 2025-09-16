@@ -73,6 +73,25 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+### Environment Variables Setup
+
+1. 複製環境變數範本文件：
+```sh
+cp .env.example .env
+```
+
+2. 編輯 `.env` 文件，填入正確的 API 配置：
+```bash
+# API 配置
+VITE_URL=https://your-api-domain.com/v2
+VITE_PATH=your-api-path
+
+# 儲存庫名稱
+REPOSITORY_NAME=your-repo-name
+```
+
+**注意**: `.env` 文件包含敏感資訊，請勿提交到版本控制系統。
+
 ### Compile and Hot-Reload for Development
 
 ```sh

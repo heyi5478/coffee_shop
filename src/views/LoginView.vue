@@ -80,12 +80,35 @@ export default {
   },
   methods: {
     ...mapActions(toastMessage, ['pushMessage']),
+    setCookieWithSecurity(name, value, expires) {
+      const secureFlags = [
+        `${name}=${value}`,
+        `expires=${expires}`,
+        'HttpOnly',
+        'Secure',
+        'SameSite=Strict',
+        'Path=/',
+      ].join(';');
+      document.cookie = secureFlags;
+    },
+    getSecureErrorMessage(error) {
+      if (error.response?.status === 401) {
+        return '帳號或密碼錯誤';
+      }
+      if (error.response?.status === 429) {
+        return '請求過於頻繁，請稍後再試';
+      }
+      if (error.response?.status >= 500) {
+        return '系統暫時無法使用，請稍後再試';
+      }
+      return '登入失敗，請檢查網路連線';
+    },
     signIn() {
       const api = `${VITE_URL}/admin/signin`;
       this.isLoading = true;
       this.$http.post(api, this.user).then((response) => {
         const { token, expired } = response.data;
-        document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
+        this.setCookieWithSecurity('hexToken', token, new Date(expired));
         this.isLoading = false;
         this.$router.push('/admin/products');
         this.pushMessage({
@@ -96,7 +119,7 @@ export default {
         this.pushMessage({
           style: 'danger',
           title: '登入失敗',
-          content: error.response.data.message,
+          content: this.getSecureErrorMessage(error),
         });
       });
     },
