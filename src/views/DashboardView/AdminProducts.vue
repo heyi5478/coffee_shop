@@ -117,10 +117,18 @@ export default {
         });
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '無法取得產品資料';
+        if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '取得產品資訊失敗',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
@@ -158,10 +166,22 @@ export default {
         this.getProducts(this.currentPage);
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '產品操作失敗';
+        if (error.response?.status === 400) {
+          errorMessage = '產品資料有誤，請檢查後再試';
+        } else if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status === 404) {
+          errorMessage = '產品不存在';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: status,
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
@@ -185,10 +205,20 @@ export default {
         this.getProducts(this.currentPage);
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '刪除產品失敗';
+        if (error.response?.status === 401) {
+          errorMessage = '權限不足，請重新登入';
+        } else if (error.response?.status === 404) {
+          errorMessage = '產品不存在';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '刪除產品',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
