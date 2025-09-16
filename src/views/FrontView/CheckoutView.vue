@@ -41,8 +41,10 @@
                   </td>
                   <td>
                     <div class="input-group input-group-sm">
-                      <input type="number" class="form-control" min="1"
-                       v-model.number="item.qty" @blur="updateCart(item)" />
+                      <input type="number" class="form-control" min="1" max="99" step="1"
+                       v-model.number="item.qty"
+                       @blur="updateCart(item)"
+                       @input="validateQuantity" />
                       <div class="input-group-text">/ {{ item.product.unit }}</div>
                     </div>
                   </td>
@@ -182,6 +184,21 @@ export default {
       'removeCartItem',
       'updateCart',
     ]),
+    validateQuantity(event) {
+      const value = parseInt(event.target.value, 10);
+      const { target } = event;
+
+      if (Number.isNaN(value) || value < 1) {
+        target.value = 1;
+      } else if (value > 99) {
+        target.value = 99;
+        this.pushMessage({
+          style: 'warning',
+          title: '數量限制',
+          content: '單項商品數量不得超過 99',
+        });
+      }
+    },
 
     // deleteAllCarts() {
     //   this.isLoading = true;
