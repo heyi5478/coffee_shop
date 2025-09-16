@@ -51,10 +51,17 @@ export default {
         });
         this.status = true;
       }).catch((error) => {
+        let errorMessage = '身份驗證失敗，請重新登入';
+        if (error.response?.status === 401) {
+          errorMessage = '登入已過期，請重新登入';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統暫時無法使用，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '錯誤訊息',
-          content: error.response.data.message,
+          content: errorMessage,
         });
         this.$router.push('/login');
       });
