@@ -302,10 +302,18 @@ export default {
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '優惠券驗證失敗';
+        if (error.response?.status === 400) {
+          errorMessage = '優惠券無效或已過期';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '加入優惠券',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
@@ -319,10 +327,20 @@ export default {
         this.isLoading = false;
       }).catch((error) => {
         this.isLoading = false;
+
+        let errorMessage = '訂單建立失敗，請稍後再試';
+        if (error.response?.status === 400) {
+          errorMessage = '訂單資料有誤，請檢查資料';
+        } else if (error.response?.status === 401) {
+          errorMessage = '請先登入後再下訂單';
+        } else if (error.response?.status >= 500) {
+          errorMessage = '系統錯誤，請稍後再試';
+        }
+
         this.pushMessage({
           style: 'danger',
           title: '建立訂單',
-          content: error.response.data.message,
+          content: errorMessage,
         });
       });
     },
