@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
 <!-- preloader -->
 <PreloaderComponent></PreloaderComponent>
