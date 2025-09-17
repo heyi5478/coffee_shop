@@ -1,20 +1,31 @@
-<!-- eslint-disable max-len -->
 <template>
-<header class="header fixed-top " :class="[{ 'bg-light': !isScrolled,'bg-opacity-50': !isScrolled }, { 'bg-opacity-100': isScrolled, 'bg-primary': isScrolled, 'shadow-sm': isScrolled }]">
+<header class="header fixed-top"
+ :class="[{ 'bg-light': !isScrolled,'bg-opacity-50': !isScrolled },
+  { 'bg-opacity-100': isScrolled, 'bg-primary': isScrolled, 'shadow-sm': isScrolled }]">
   <div class="container d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <RouterLink class="navbar-brand" to="/"><img style="height: 75px;" src="../assets/images/logo.png" alt="logo"></RouterLink>
+      <RouterLink class="navbar-brand" to="/">
+        <img style="height: 75px;" src="../assets/images/logo.png" alt="logo">
+      </RouterLink>
       <button class="navbar-toggler" type="button" @click="toggleCollapse">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" :class="{ 'show': isCollapsed }" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-end"
+       :class="{ 'show': isCollapsed }" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-              <!-- <RouterLink class="nav-item nav-link me-4 active" to="/">首頁 <span class="sr-only">(current)</span></RouterLink> -->
-          <RouterLink class="nav-item nav-link me-4" to="/products" @click="closeMobileMenu">線上商店</RouterLink>
-          <RouterLink class="nav-item nav-link me-4" to="/about" @click="closeMobileMenu">關於</RouterLink>
-          <RouterLink class="btn position-relative" style="width: 44px;" to="/checkout" @click="closeMobileMenu">
+              <!-- <RouterLink class="nav-item nav-link me-4 active" to="/">
+                首頁
+                 <span class="sr-only">(current)</span>
+                </RouterLink> -->
+          <RouterLink class="nav-item nav-link me-4"
+           to="/products" @click="closeMobileMenu">線上商店</RouterLink>
+          <RouterLink class="nav-item nav-link me-4"
+           to="/about" @click="closeMobileMenu">關於</RouterLink>
+          <RouterLink class="btn position-relative"
+           style="width: 44px;" to="/checkout" @click="closeMobileMenu">
             <i class="bi bi-cart"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span class="position-absolute top-0
+             start-100 translate-middle badge rounded-pill bg-danger">
               {{ this.carts?.length }}
               <span class="visually-hidden">unread messages</span>
             </span>
