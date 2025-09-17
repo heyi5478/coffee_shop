@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
     <div class="position-relative mb-7 mb-md-9">
       <img class="d-lg-none d-block w-100 object-fit-cover " style="height: 30vh;"
@@ -18,8 +17,12 @@
         <div class="col-md-7">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <swiper :navigation="true" :modules="modules" class="mySwiper pdImg">
-              <swiper-slide><img :src="product.imageUrl" class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
-              <swiper-slide v-for="items in imagesUrl" :key="items"><img :src="items" class="d-block w-100 object-fit-cover" style="height: 500px;" alt="產品細節"></swiper-slide>
+              <swiper-slide><img :src="product.imageUrl"
+                 class="d-block w-100 object-fit-cover" alt="..."></swiper-slide>
+              <swiper-slide v-for="items in imagesUrl" :key="items">
+                <img :src="items" class="d-block w-100 object-fit-cover"
+                style="height: 500px;" alt="產品細節">
+              </swiper-slide>
             </swiper>
           </div>
         </div>
@@ -27,7 +30,9 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white px-0 mb-0 py-3">
               <li class="breadcrumb-item"><RouterLink class="text-muted" to="/">首頁</RouterLink></li>
-              <li class="breadcrumb-item"><RouterLink class="text-muted" to="/products">商店</RouterLink></li>
+              <li class="breadcrumb-item">
+                <RouterLink class="text-muted" to="/products">商店</RouterLink>
+              </li>
               <li class="breadcrumb-item active" aria-current="page">產品內容</li>
             </ol>
           </nav>
@@ -44,21 +49,26 @@
             <div class="col-6">
               <div class="input-group my-3 bg-light rounded">
                 <div class="input-group-prepend">
-                  <button class="btn btn-outline-dark border-0 py-2" type="button" id="button-addon1" @click="changeQty(-1)">
+                  <button class="btn btn-outline-dark border-0 py-2"
+                   type="button" id="button-addon1" @click="changeQty(-1)">
                     <font-awesome-icon icon="fa-solid fa-minus" />
                   </button>
                 </div>
-                <input type="number" class="form-control border-0 text-center my-auto shadow-none bg-light"
+                <input type="number" class="form-control border-0
+                 text-center my-auto shadow-none bg-light"
                 max="10" min="1" v-model="qty" @change="changeNumber(qty)" />
                 <div class="input-group-append">
-                  <button class="btn btn-outline-dark border-0 py-2" type="button" id="button-addon2" @click="changeQty(1)">
+                  <button class="btn btn-outline-dark border-0 py-2"
+                   type="button" id="button-addon2" @click="changeQty(1)">
                     <font-awesome-icon icon="fa-solid fa-plus" />
                   </button>
                 </div>
               </div>
             </div>
             <div class="col-6">
-              <a class="text-nowrap btn btn-secondary w-100 py-2" @click.prevent="addToCart(product.id, qty)">加入購物車</a>
+              <a class="text-nowrap btn btn-secondary w-100 py-2"
+               @click.prevent="addToCart(product.id, qty)">加入購物車
+              </a>
             </div>
           </div>
         </div>
@@ -78,11 +88,13 @@
         </div>
       </div>
       <div class="row justify-content-between px-2 py-4 bg-primary"> <!--card-->
-        <div class="col-12 col-lg-3 col-md-3 col-sm-12 mb-2"  v-for=" item in sameProduct" :key="item.id">
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12 mb-2"
+          v-for=" item in sameProduct" :key="item.id">
           <RouterLink :to="`/product/${item.id}`" class="link text-primary">
             <div class="card border-0 w-80 bg-primary">
               <div class="pic w-100 px-2 overflow-hidden rounded-1">
-                <img :src="item.imageUrl" class="card-img w-100 object-fit-cover overflow-hidden" height="200px" :alt="item.title">
+                <img :src="item.imageUrl" class="card-img w-100 object-fit-cover overflow-hidden"
+                 height="200px" :alt="item.title">
               </div>
               <div class=" over card-img-overlay">
                 <h3 class="link text-white">了解更多</h3>
