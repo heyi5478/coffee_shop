@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
   <footer class="footer-section footer">
     <div class="container">
@@ -45,7 +44,9 @@
             <div class="map box-shadow-1 bg-white">
               <iframe
                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7228.510865468377!2d121.5063422!3d25.0593302!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9155bdb3bab%3A0xc93b2e1a0d6e1e7a!2z5pif5be05YWL5YW46JePIOS_neWuiemWgOW4gg!5e0!3m2!1szh-TW!2stw!4v1710744175655!5m2!1szh-TW!2stw"
-               width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               width="600" height="450" style="border:0;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
         </div>
@@ -53,7 +54,10 @@
       <div class="footer-info">
         <p>&copy; <span id="displayYear"></span>All Rights Reserved By
         <a href="#">Steve</a></p>
-        <p class="me-2">非官方網站僅作練習使用，無任何商業用途<span> | </span><RouterLink class="ms-2 text-decoration-none" to="/login">登入後台</RouterLink></p>
+        <p class="me-2">非官方網站僅作練習使用，無任何商業用途
+          <span> | </span>
+          <RouterLink class="ms-2 text-decoration-none" to="/login">登入後台</RouterLink>
+        </p>
       </div>
     </div>
   </footer>

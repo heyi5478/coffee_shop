@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 
 import axios from 'axios';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Swal from 'sweetalert2';
 // import useLoadingStore from './loadingStore';
 import useToastMessageStore from './toastMessageStore';
